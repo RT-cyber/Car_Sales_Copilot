@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoVendas Premium - Carros Usados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .store-name {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #e94560;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #1a1a2e;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #e94560;
+            border-radius: 2px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(90deg, #1a1a2e, #0f3460);
+            color: white;
+        }
+
+        th {
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background-color: #f8f9ff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .price {
+            color: #e94560;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-sold {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .btn-contact {
+            background: #e94560;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background: #c1364e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn-buy {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-left: 8px;
+        }
+
+        .btn-buy:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .store-name {
+                font-size: 2.5rem;
+            }
+
+            th, td {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="store-name">AutoVendas Premium</div>
+        <div class="tagline">Os Melhores Carros Usados com Garantia de Qualidade</div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">Veículos em Destaque</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Ano</th>
+                        <th>Quilometragem</th>
+                        <th>Preço</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Toyota</td>
+                        <td>Corolla XEI 2.0</td>
+                        <td>2020</td>
+                        <td>45.000 km</td>
+                        <td class="price">R$ 89.900</td>
+                        <td><span class="status-available">Disponível</span></td>
+                        <td><button class="btn-contact">Interesse</button><button class="btn-buy">Comprar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Honda</td>
+                        <td>Civic Touring 1.5 Turbo</td>
+                        <td>2021</td>
+                        <td>32.000 km</td>
+                        <td class="price">R$ 119.500</td>
+                        <td><span class="status-available">Disponível</span></td>
+                        <td><button class="btn-contact">Interesse</button><button class="btn-buy">Comprar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Volkswagen</td>
+                        <td>Golf GTI 2.0</td>
+                        <td>2019</td>
+                        <td>58.000 km</td>
+                        <td class="price">R$ 139.900</td>
+                        <td><span class="status-available">Disponível</span></td>
+                        <td><button class="btn-contact">Interesse</button><button class="btn-buy">Comprar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Jeep</td>
+                        <td>Compass Limited 2.0</td>
+                        <td>2020</td>
+                        <td>41.000 km</td>
+                        <td class="price">R$ 104.900</td>
+                        <td><span class="status-sold">Vendido</span></td>
+                        <td><button class="btn-contact" disabled style="background:#ccc; cursor:not-allowed;">Interesse</button></td>
+                    </tr>
+                    <tr>
+                        <td>Hyundai</td>
+                        <td>Creta Prestige 2.0</td>
+                        <td>2021</td>
+                        <td>28.000 km</td>
+                        <td class="price">R$ 98.900</td>
+                        <td><span class="status-available">Disponível</span></td>
+                        <td><button class="btn-contact">Interesse</button><button class="btn-buy">Comprar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Ford</td>
+                        <td>Ranger XLT 3.2 Diesel</td>
+                        <td>2019</td>
+                        <td>72.000 km</td>
+                        <td class="price">R$ 156.000</td>
+                        <td><span class="status-available">Disponível</span></td>
+                        <td><button class="btn-contact">Interesse</button><button class="btn-buy">Comprar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Chevrolet</td>
+                        <td>Onix Plus Premier 1.0 Turbo</td>
+                        <td>2022</td>
+                        <td>15.000 km</td>
+                        <td class="price">R$ 72.500</td>
+                        <td><span class="status-available">Disponível</span></td>
+                        <td><button class="btn-contact">Interesse</button><button class="btn-buy">Comprar</button></td>
+                    </tr>
+                    <tr>
+                        <td>BMW</td>
+                        <td>320i Sport GP 2.0</td>
+                        <td>2018</td>
+                        <td>65.000 km</td>
+                        <td class="price">R$ 149.900</td>
+                        <td><span class="status-sold">Vendido</span></td>
+                        <td><button class="btn-contact" disabled style="background:#ccc; cursor:not-allowed;">Interesse</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <div class="footer-item">
+                <span>📍</span>
+                <span>Av. Paulista, 1000 - São Paulo, SP</span>
+            </div>
+            <div class="footer-item">
+                <span>📞</span>
+                <span>(11) 3333-4444</span>
+            </div>
+            <div class="footer-item">
+                <span>✉️</span>
+                <span>contato@autovendaspremium.com.br</span>
+            </div>
+        </div>
+        <p>&copy; 2024 AutoVendas Premium. Todos os direitos reservados.</p>
+    </footer>
+    <script src="static/car_sales.js"></script>
+</body>
+</html>
